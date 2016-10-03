@@ -1,0 +1,11 @@
+{
+  "name": "language-suricata",
+  "version": "0.0.1",
+  "description": "Atom syntax highlighting for Suricata Rule files",
+  "repository": "https://github.com/SleuthKid/language-suricata",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {}
+}

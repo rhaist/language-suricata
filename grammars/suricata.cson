@@ -1,0 +1,100 @@
+'name': 'Suricata'
+'scopeName': 'source.suricata'
+'fileTypes': [
+  'rules'
+]
+'patterns': [
+  {
+    'include': '#numbers'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.variable.suricata'
+    'match': '(\\$?\\$\\w*)'
+    'name': 'variable.language.suricata'
+  }
+  {
+   'begin': '#'
+   'beginCaptures':
+     '0':
+       'name': 'punctuation.definition.comment.suricata'
+   'end': '$\\n?'
+   'name': 'comment.line.suricata'
+   'patterns': [
+     {
+       'match': '(?>\\\\\\s*\\n)'
+       'name': 'punctuation.separator.continuation.suricata'
+     }
+   ]
+  }
+  {
+   'begin': '"'
+   'beginCaptures':
+     '0':
+       'name': 'punctuation.definition.string.begin.suricata'
+   'end': '"'
+   'endCaptures':
+     '0':
+       'name': 'punctuation.definition.string.end.suricata'
+   'name': 'string.quoted.double.suricata'
+  }
+  {
+    'match':'\\b(alert|drop|http|smtp|ip|any)\\b'
+    'name': 'keyword.control.suricata'
+  }
+  {
+    'match':'\\b(name|sid|priority|rev|classtype|threshold|metadata|reference|tag|msg|content|uricontent|pcre|ack|seq|depth|distance|within|offset|replace|nocase|fast_pattern|rawbytes|byte_test|byte_jump|sameip|geoip|ip_proto|flow|window|ftpbounce|isdataat|id|rpc|dsize|flowvar|__flowvar__postmatch__|flowint|pktvar|noalert|flowbits|hostbits|ipv4-csum|tcpv4-csum|tcpv6-csum|udpv4-csum|udpv6-csum|icmpv4-csum|icmpv6-csum|stream_size|ttl|itype|icode|tos|icmp_id|icmp_seq|detection_filter|decode-event|ipopts|flags|fragbits|fragoffset|gid|nfq_set_mark|tls.version|tls.subject|tls.issuerdn|tls.fingerprint|tls.store|http_cookie|http_method|urilen|http_client_body|http_server_body|http_header|http_raw_header|http_uri|http_raw_uri|http_stat_msg|http_stat_code|http_user_agent|http_host|http_raw_host|ssh.protoversion|ssh.softwareversion|ssl_version|ssl_state|byte_extract|file_data|pkt_data|app-layer-event|app-layer-protocol|dce_iface|dce_opnum|dce_stub_data|asn1|engine-event|stream-event|filename|fileext|filestore|filemagic|filemd5|filesize|l3_proto|lua|iprep|dns_query|tls_sni|modbus|xbits|base64_decode|base64_data|template)\\b'
+    'name': 'keyword.operator.suricata'
+  }
+  {
+    'match':'\\b(url|set)\\b'
+    'name': 'keyword.other.suricata'
+  }
+]
+# From https://github.com/atom/language-javascript/blob/master/grammars/javascript.cson#L1208
+'repository':
+  'numbers':
+    'patterns': [
+      {
+        'match': '\\b(?<!\\$)0(x|X)[0-9a-fA-F]+\\b(?!\\$)'
+        'name': 'constant.numeric.hex.suricata'
+      }
+      {
+        'match': '\\b(?<!\\$)0(b|B)[01]+\\b(?!\\$)'
+        'name': 'constant.numeric.binary.suricata'
+      }
+      {
+        'match': '\\b(?<!\\$)0(o|O)?[0-7]+\\b(?!\\$)'
+        'name': 'constant.numeric.octal.suricata'
+      }
+      {
+        'match': '''(?x)
+          (?<!\\$)(?:
+            (?:\\b[0-9]+(\\.)[0-9]+[eE][+-]?[0-9]+\\b)| # 1.1E+3
+            (?:\\b[0-9]+(\\.)[eE][+-]?[0-9]+\\b)|       # 1.E+3
+            (?:\\B(\\.)[0-9]+[eE][+-]?[0-9]+\\b)|       # .1E+3
+            (?:\\b[0-9]+[eE][+-]?[0-9]+\\b)|            # 1E+3
+            (?:\\b[0-9]+(\\.)[0-9]+\\b)|                # 1.1
+            (?:\\b[0-9]+(\\.)\\B)|                      # 1.
+            (?:\\B(\\.)[0-9]+\\b)|                      # .1
+            (?:\\b[0-9]+\\b(?!\\.))                     # 1
+          )(?!\\$)
+        '''
+        'captures':
+          '0':
+            'name': 'constant.numeric.decimal.suricata'
+          '1':
+            'name': 'meta.delimiter.decimal.period.suricata'
+          '2':
+            'name': 'meta.delimiter.decimal.period.suricata'
+          '3':
+            'name': 'meta.delimiter.decimal.period.suricata'
+          '4':
+            'name': 'meta.delimiter.decimal.period.suricata'
+          '5':
+            'name': 'meta.delimiter.decimal.period.suricata'
+          '6':
+            'name': 'meta.delimiter.decimal.period.suricata'
+      }
+    ]
